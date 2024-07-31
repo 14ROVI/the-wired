@@ -1,0 +1,11 @@
+[package]
+name = "the-wired"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7.5", features = ["http2", "macros"] }
+chrono = { version = "0.4.38", features = ["serde"] }
+maud = { version = "0.26.0", features = ["axum"] }
+serde = "1.0.204"
+tokio = { version = "1.39.2", features = ["net", "rt-multi-thread"] }
