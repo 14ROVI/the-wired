@@ -7,3 +7,5 @@ It uses:
 - htmx
 - maud
 - auxm
+- tailwind
+  
