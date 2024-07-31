@@ -6,7 +6,7 @@ It uses:
 
 - htmx
 - maud
-- auxm
+- axum
 - tailwind
 
 ## How to run
