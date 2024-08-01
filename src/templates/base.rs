@@ -7,7 +7,7 @@ pub fn base(page: Markup) -> Markup {
         (DOCTYPE)
         html lang="en" {
             head {
-                title { "title of the page" }
+                title { "The Wired" }
                 meta name="viewport" content="width=device-width, initial-scale=1";
                 meta charset="UTF-8";
                 script src="/assets/htmx.min.js" {}
