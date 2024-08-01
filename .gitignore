@@ -1,3 +1,4 @@
 target/
 tailwindcss.exe
 assets/main.css
+.env
