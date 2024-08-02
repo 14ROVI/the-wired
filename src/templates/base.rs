@@ -11,9 +11,10 @@ pub fn base(page: Markup) -> Markup {
                 meta name="viewport" content="width=device-width, initial-scale=1";
                 meta charset="UTF-8";
                 script src="/assets/htmx.min.js" {}
+                script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" {}
                 link href="/assets/main.css" rel="stylesheet" type="text/css";
             }
-            body {
+            body x-init {
                 (page)
             }
         }

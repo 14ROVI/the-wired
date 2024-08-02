@@ -16,6 +16,8 @@ pub struct Post {
 }
 impl Render for Post {
     fn render(&self) -> Markup {
+        let render_date = format!("new Date('{}').toLocaleString()", self.created_at);
+
         html! {
             div.flex.flex-col.gap-2 {
                 div.flex.flex-row {
@@ -29,7 +31,7 @@ impl Render for Post {
                     span { (self.content) }
                 }
                 div {
-                    span.text-xs { (self.created_at.format("%d/%m/%Y %H:%M")) }
+                    span.text-xs x-text=(render_date) {  }
                 }
             }
         }

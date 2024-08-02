@@ -24,10 +24,10 @@ async fn main() {
         .await
         .expect("Could not connect to postgres");
 
-    sqlx::migrate!("./migrations")
-        .run(&pool)
-        .await
-        .expect("Could not migrate");
+    // sqlx::migrate!("./migrations")
+    //     .run(&pool)
+    //     .await
+    //     .expect("Could not migrate");
 
     let app = Router::new()
         .route("/", get(routes::index))
