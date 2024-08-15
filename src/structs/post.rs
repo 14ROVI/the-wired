@@ -3,6 +3,8 @@ use maud::html;
 use maud::Markup;
 use maud::Render;
 
+use crate::templates::date;
+
 pub struct PostAuthor {
     pub display_name: String,
     pub username: String,
@@ -16,8 +18,6 @@ pub struct Post {
 }
 impl Render for Post {
     fn render(&self) -> Markup {
-        let render_date = format!("new Date('{}').toLocaleString()", self.created_at);
-
         html! {
             div.flex.flex-col.gap-2 {
                 div.flex.flex-row {
@@ -31,7 +31,7 @@ impl Render for Post {
                     span { (self.content) }
                 }
                 div {
-                    span.text-xs x-text=(render_date) {  }
+                    (date(self.created_at))
                 }
             }
         }

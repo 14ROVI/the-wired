@@ -1,3 +1,4 @@
+mod db;
 mod routes;
 mod structs;
 mod templates;
