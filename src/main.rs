@@ -4,6 +4,7 @@ mod structs;
 mod templates;
 mod utils;
 
+use axum::routing::post;
 use axum::{routing::get, Router};
 use dotenvy::dotenv;
 use sqlx::postgres::PgPoolOptions;
@@ -33,6 +34,7 @@ async fn main() {
     let app = Router::new()
         .route("/", get(routes::index))
         .route("/timeline", get(routes::get_timeline))
+        .route("/post", post(routes::post_post))
         .nest_service("/assets/", ServeDir::new("./assets/")) // in case of no nginx or similar
         .with_state(pool);
 

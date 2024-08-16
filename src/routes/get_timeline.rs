@@ -5,6 +5,6 @@ use sqlx::PgPool;
 use crate::{db, templates};
 
 pub async fn get_timeline(State(pool): State<PgPool>) -> Markup {
-    let posts = db::timeline(&pool).await;
+    let posts = db::timeline(&pool).await.expect("Couldn't fetch posts");
     templates::timeline(posts)
 }

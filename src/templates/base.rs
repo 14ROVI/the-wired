@@ -14,7 +14,7 @@ pub fn base(page: Markup) -> Markup {
                 script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" {}
                 link href="/assets/main.css" rel="stylesheet" type="text/css";
             }
-            body x-init hx-headers=r#"js:{"x-timezone": Intl.DateTimeFormat().resolvedOptions().timeZone}"# {
+            body.prose.max-w-full x-init hx-headers=r#"js:{"x-timezone": Intl.DateTimeFormat().resolvedOptions().timeZone}"# {
                 (page)
             }
         }

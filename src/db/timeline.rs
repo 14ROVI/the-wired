@@ -2,23 +2,23 @@ use sqlx::{Pool, Postgres};
 
 use crate::structs::{Post, PostAuthor};
 
-pub async fn timeline(pool: &Pool<Postgres>) -> Vec<Post> {
-    sqlx::query!("SELECT posts.*, users.username, users.display_name FROM posts JOIN users ON author=users.id ORDER BY posts.created_at DESC")
+pub async fn timeline(pool: &Pool<Postgres>) -> Result<Vec<Post>, sqlx::Error> {
+    let records = sqlx::query!("SELECT posts.*, users.username, users.display_name, users.avatar_ref FROM posts JOIN users ON author=users.id ORDER BY posts.created_at DESC")
         .fetch_all(pool)
-        .await
-        .map(|rows| {
-            rows.into_iter()
-                .map(|row| Post {
-                author: PostAuthor {
-                    avatar: "avatar".to_owned(),
-                    display_name: row.display_name.to_string(),
-                    username: row.username.to_string(),
-                },
-                content: row.content.to_owned(),
-                created_at: row.created_at.to_owned(),
-            })
-            // .collect()
+        .await?;
+
+    let posts = records
+        .into_iter()
+        .map(|row| Post {
+            author: PostAuthor {
+                avatar: row.avatar_ref,
+                display_name: row.display_name,
+                username: row.username,
+            },
+            content: row.content,
+            created_at: row.created_at,
         })
-        .map(|posts| posts.collect())
-        .expect("couldnt fetch posts")
+        .collect();
+
+    Ok(posts)
 }
